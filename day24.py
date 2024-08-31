@@ -74,11 +74,11 @@ def clean_hailstones(hailstone_info: str) -> tuple[tuple[int, ...], tuple[int, .
     velocities = tuple(map(int, velocities.split(", ")))
     return positions, velocities
 
-with open("day4.txt", "r") as txt_file:
+with open("day24.txt", "r") as txt_file:
     solutions_found = 0
     MIN_BOUND = 200000000000000
     MAX_BOUND = 400000000000000
-    
+
     hailstones = txt_file.readlines()
     hailstones = tuple(map(clean_hailstones, hailstones))
 
@@ -86,7 +86,7 @@ with open("day4.txt", "r") as txt_file:
         positions_i, velocities_i = hailstones[i]
         xi_initial, yi_initial, _ = positions_i
         vxi, vyi, _ = velocities_i
-        
+
         mi = vyi / vxi  # slope
 
         for j in range(i+1, len(hailstones)):
@@ -95,7 +95,7 @@ with open("day4.txt", "r") as txt_file:
             positions_j, velocities_j = hailstones[j]
             xj_initial, yj_initial, _ = positions_j
             vxj, vyj, _ = velocities_j
-            
+
             mj = vyj / vxj
 
             if mi == mj:  # same slope in 2D implies parallel or coinciding lines
@@ -163,7 +163,7 @@ import numpy as np
 
 rx, ry, rz, vxr, vyr, vzr = sym.symbols("rx, ry, rz, vxr, vyr, vzr")
 
-with open("day4.txt", "r") as txt_file:
+with open("day24.txt", "r") as txt_file:
     """
     Notice that initially, we have 6 variables (unknowns) related to the rock's initial positions and velocities.
     Then, for each hailstone we consider intersecting with the rock at a specific time, we introduce an additional variable (ti).
